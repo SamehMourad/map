@@ -8,9 +8,9 @@ ADD requirements.txt /app
 # Install requirements
 RUN pip install -r requirements.txt
 
-ENV LISTEN_PORT 5050
+ENV LISTEN_PORT 80
 ENV FLASK_DUBUG 1
 ENV FLASK_ENV development
 ENV FLASK_APP main.py
 
-EXPOSE 5050
+EXPOSE 80
