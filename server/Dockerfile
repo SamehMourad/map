@@ -8,10 +8,9 @@ ADD requirements.txt /app
 # Install requirements
 RUN pip install -r requirements.txt
 
-# Copy project to docker work directory
-ADD maps /app
+ENV LISTEN_PORT 8080
+ENV FLASK_DUBUG 1
+ENV FLASK_ENV development
+ENV FLASK_APP main.py
 
-
-ENV LISTEN_PORT 80
-
-EXPOSE 80
+EXPOSE 8080

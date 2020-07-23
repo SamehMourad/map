@@ -1,24 +1,29 @@
-version: '3'
+version: '3.7'
 services:
-  hub:
-    image: selenium/hub:3.141.59-20200525
-    container_name: hub
-    ports:
-      - "4444:4444"
   chrome:
-    image: selenium/node-chrome:3.141.59-20200525
+    image: selenium/standalone-chrome-debug
     volumes:
       - /dev/shm:/dev/shm
-    depends_on:
-      - hub
     environment:
-      - START_XVFB=false
-      - HUB_HOST=hub
-      - HUB_PORT=4444
+      - START_XVFB=true
+    ports:
+      - 4444:4444
 
   server:
-    build: .
+    build: ./server
+    volumes:
+      - ./server/src:/app
     ports:
-      - 80:80
+      - 8080:8080
+      - 8000:8000
+
+  interface:
+    build: ./interface
+    volumes:
+      - ./interface/src:/app
+    ports:
+      - 5050:5050
+      - 5000:5000
     depends_on:
       - chrome
+      - server
