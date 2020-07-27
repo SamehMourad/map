@@ -21,7 +21,7 @@ services:
     volumes:
       - ./interface/src:/app
     ports:
-      - 5000:80
+      - 80:80
     depends_on:
       - chrome
       - server
