@@ -18,7 +18,7 @@ class Maps:
         self.options = Options()
         self.options.add_argument('--headless')
 
-        self.driver = webdriver.Remote('http://hub:4444/wd/hub', desired_capabilities=self.options.to_capabilities())
+        self.driver = webdriver.Remote('http://chrome:4444/wd/hub', desired_capabilities=self.options.to_capabilities())
         self.page = self.driver.get('http://server:8080/map')
 
     def in_poly(self, lat, lng):
