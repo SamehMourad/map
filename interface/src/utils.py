@@ -29,6 +29,7 @@ class Maps:
             return data
         except:
             if self.tried < 5:
+                self.page = self.driver.get('http://server:8080/map')
                 return self.in_poly(lat, lng)
             else:
                 exit()
