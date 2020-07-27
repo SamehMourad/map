@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 
 class Maps:
     __instance = None
+    tried = 0
 
     @staticmethod
     def getInstance():
@@ -22,5 +23,12 @@ class Maps:
         self.page = self.driver.get('http://server:8080/map')
 
     def in_poly(self, lat, lng):
-        data = self.driver.execute_script('return inPoly({}, {});'.format(lat, lng))
-        return data
+        self.tried+=1
+        try:
+            data = self.driver.execute_script('return inPoly({}, {});'.format(lat, lng))
+            return data
+        except:
+            if self.tried < 5:
+                return self.in_poly(lat, lng)
+            else:
+                exit()

@@ -87,7 +87,7 @@ def remove(area_id):
 @app.route('/map')
 def _map():
     cursor = mysql.get_db().cursor(pymysql.cursors.DictCursor)
-    cursor.execute('select * from areas where points is not null')
+    cursor.execute('select id, name, points from areas where points is not null')
     areas = cursor.fetchall()
     for area in areas:
         print(area)

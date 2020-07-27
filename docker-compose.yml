@@ -14,14 +14,14 @@ services:
     volumes:
       - ./server/src:/app
     ports:
-      - 8080
+      - 8080:8080
 
   interface:
     build: ./interface
     volumes:
       - ./interface/src:/app
     ports:
-      - 80:80
+      - 5000:80
     depends_on:
       - chrome
       - server
