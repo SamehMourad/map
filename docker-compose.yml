@@ -5,12 +5,12 @@ services:
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
-      - selenium-hub
+      - hub
     environment:
       - HUB_HOST=selenium-hub
       - START_XVFB=true
 
-  selenium-hub:
+  hub:
     image: selenium/hub:4.0.0-alpha-6-20200721
     ports:
       - "4444:4444"
