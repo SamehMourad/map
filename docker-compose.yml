@@ -7,22 +7,21 @@ services:
     environment:
       - START_XVFB=true
     ports:
-      - 4444:4444
+      - 4444
 
   server:
     build: ./server
     volumes:
       - ./server/src:/app
     ports:
-      - 8080:8080
-      - 8000:8000
+      - 8080
 
   interface:
     build: ./interface
     volumes:
       - ./interface/src:/app
     ports:
-      - 80:80
+      - 5050:80
     depends_on:
       - chrome
       - server

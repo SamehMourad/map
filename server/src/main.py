@@ -2,7 +2,6 @@ import json
 
 from flaskext.mysql import MySQL
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
 import pymysql
 app = Flask(__name__)
 app.config.update(
@@ -14,7 +13,6 @@ MYSQL_DATABASE_DB='bleed'
 )
 mysql = MySQL()
 mysql.init_app(app)
-CORS(app)
 # db = mysql.connector.connect(
 #         host="asasy-do-user-7627257-0.a.db.ondigitalocean.com",
 #         user="doadmin",
@@ -88,10 +86,11 @@ def remove(area_id):
     }
 @app.route('/map')
 def _map():
-    cursor = mysql.get_db().cursor()
+    cursor = mysql.get_db().cursor(pymysql.cursors.DictCursor)
     cursor.execute('select * from areas where points is not null')
     areas = cursor.fetchall()
     for area in areas:
+        print(area)
         area['points'] = json.loads(area['points'])
     return render_template('map.html', areas = areas)
 
