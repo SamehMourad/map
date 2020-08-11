@@ -1,13 +1,13 @@
 version: '3.7'
 services:
   chrome:
-    image: selenium/standalone-chrome-debug
+    image: selenium/standalone-chrome
     volumes:
       - /dev/shm:/dev/shm
     environment:
       - START_XVFB=true
     ports:
-      - 4444
+      - "4444:4444"
 
   server:
     build: ./server

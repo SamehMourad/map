@@ -29,6 +29,7 @@ class Maps:
             return data
         except:
             if self.tried < 5:
+                self.driver = webdriver.Remote('http://chrome:4444/wd/hub', desired_capabilities=self.options.to_capabilities())
                 self.page = self.driver.get('http://server:8080/map')
                 return self.in_poly(lat, lng)
             else:
